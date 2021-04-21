@@ -1,0 +1,5 @@
+# coding: utf-8
+
+TEMPERATURE_FILE = "/sys/bus/w1/devices/28-????????????/w1_slave"
+TEMP_LOG_DIR = "temp_log"
+
