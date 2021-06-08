@@ -1,5 +1,19 @@
 # coding: utf-8
 
-TEMPERATURE_FILE = "/sys/bus/w1/devices/28-????????????/w1_slave"
-TEMP_LOG_DIR = "temp_log"
+import ds18b20
+import bme280
+
+# DS18B20
+DS18B20_TEMPERATURE_FILE = "/sys/bus/w1/devices/28-????????????/w1_slave"
+DS18B20_TEMP_LOG_DIR = "data_log/ds18b20"
+DS18B20_TEMP_FUNC = ds18b20.get_func_read_data(DS18B20_TEMPERATURE_FILE)
+
+# BME280
+BME280_DATA_FUNC = bme280.read_data
+BME280_DATA_LOG_DIR = "data_log/bme280"
+
+# GLOBAL SETTINGS
+FUNC_LOGDIR_PAIRS = [
+    (DS18B20_TEMP_LOG_DIR, DS18B20_TEMP_FUNC),
+    (BME280_DATA_LOG_DIR, BME280_DATA_FUNC)]
 
