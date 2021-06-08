@@ -28,5 +28,6 @@ for logdir, func in func_logdir_pairs:
     filepath = os.path.join(logdir, year, filename) 
     
     with open(filepath, "a") as w:
-        w.write(nowstr + "\t" + str(temperature) + "\n")
+        data_str = "\t".join([str(datum) for datum in data])
+        w.write(nowstr + "\t" + data_str + "\n")
 
