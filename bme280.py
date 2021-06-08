@@ -5,10 +5,14 @@
 from smbus import SMBus
 import time
 
+# maybe it is better to change these variables as arguments of class constructor, instead of hard cording
 bus_number  = 1
 i2c_address = 0x76
 
-bus = SMBus(bus_number)
+try:
+    bus = SMBus(bus_number)
+except FileNotFoundError:
+    bus = None
 
 digT = []
 digP = []
@@ -18,9 +22,13 @@ t_fine = 0.0
 
 
 def writeReg(reg_address, data):
-	bus.write_byte_data(i2c_address,reg_address,data)
+    if bus is None: return
+
+    bus.write_byte_data(i2c_address,reg_address,data)
 
 def get_calib_param():
+    if bus is None: return
+    
 	calib = []
 	
 	for i in range (0x88,0x88+24):
@@ -61,6 +69,9 @@ def get_calib_param():
 			digH[i] = (-digH[i] ^ 0xFFFF) + 1  
 
 def read_data():
+    if bus is None:
+        return None
+        
 	data = []
 	for i in range (0xF7, 0xF7+8):
 		data.append(bus.read_byte_data(i2c_address,i))
