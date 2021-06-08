@@ -19,7 +19,10 @@ nowstr = now.isoformat().split(".")[0]
 year = str(now.year)
 for logdir, func in func_logdir_pairs:
     dirpath = os.path.join(logdir, year)
-    data = func()
+    try:
+        data = func()
+    except subprocess.CalledProcessError:
+        continue
     if data is None:
         continue
     if not os.path.exists(dirpath):
