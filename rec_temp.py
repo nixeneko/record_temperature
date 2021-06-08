@@ -17,7 +17,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 now = datetime.datetime.now()
 nowstr = now.isoformat().split(".")[0]
 year = str(now.year)
-for func, logdir in func_logdir_pairs:
+for logdir, func in func_logdir_pairs:
     dirpath = os.path.join(logdir, year)
     data = func()
     if data is None:
