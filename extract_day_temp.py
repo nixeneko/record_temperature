@@ -9,8 +9,9 @@ import re
 
 import settings
 
-temperature_file = settings.TEMPERATURE_FILE
-temp_log_dir = settings.TEMP_LOG_DIR
+# ad hoc
+temperature_file = settings.DS18B20_TEMPERATURE_FILE
+temp_log_dir = settings.DS18B20_TEMP_LOG_DIR
 #TEMP_LOG_DIR = "temp_log"
 MONTH_DIR = "month"
 month_dir_path = os.path.join(temp_log_dir, MONTH_DIR)
